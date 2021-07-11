@@ -1,6 +1,16 @@
 <h2 class="text-center">Carrito</h2>
-<ul>
-  <li *ngFor="let hw of cartList$ | async">
-    {{hw.name}}: {{hw.quantity}}
+<ul class="list-group list-group-numbered">
+  <li
+    class="list-group-item d-flex justify-content-between align-items-start"
+    *ngFor="let hw of cartList$ | async"
+  >
+    <img width="100" [src]="hw.img" class="pl-2 img-thumbnail" alt="..." />
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{hw.name}}</div>
+      {{ hw.price * hw.quantity | currency }}
+    </div>
+    <span class="badge bg-primary rounded-pill main-color"
+      >{{hw.quantity}}</span
+    >
   </li>
 </ul>
