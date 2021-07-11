@@ -1,0 +1,40 @@
+<h2 class="text-center">Catalogo</h2>
+<table class="mt-3 table table-hover text-center">
+  <thead>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr class="pb-3" *ngFor="let hw of hwList" [ngClass]="{clearance: hw.clearance}">
+      <td>
+        <div class="card logo" style="width: 10rem;" [ngClass]="{logo_clearance: hw.clearance}">
+          <img [src]="hw.img" class="card-img-top" [alt]="hw.name">
+          <!-- <div class="card-body">
+            <h5 class="card-title text-center">{{ hw.name }}</h5>
+          </div> -->
+        </div>
+      </td>
+      <td class="align-middle">
+        <div>
+          <h5>
+            {{ hw.type }}
+          </h5>
+          <h3>
+            {{ hw.name }}
+          </h3>
+          <h5>
+            {{ hw.price | currency }}
+          </h5>
+        </div>
+      </td>
+      <td class="align-middle">
+        <span class="badge rounded-pill bg-danger" *ngIf="hw.stock == 0">SIN STOCK</span>
+        <div *ngIf="hw.stock > 0">
+          <p>Solo quedan {{ hw.stock }} unidades disponibles!</p>
+          <app-input-quantity-integer [(quantity)]="hw.quantity" [max]="hw.stock" (maxReached)="maxReached($event)"></app-input-quantity-integer>
+          <button class="mt-3 btn logo_clearance" (click)="addToCart(hw)">COMPRAR</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

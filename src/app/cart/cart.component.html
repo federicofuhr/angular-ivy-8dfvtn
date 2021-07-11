@@ -1,0 +1,6 @@
+<h2 class="text-center">Carrito</h2>
+<ul>
+  <li *ngFor="let hw of cartList$ | async">
+    {{hw.name}}: {{hw.quantity}}
+  </li>
+</ul>
